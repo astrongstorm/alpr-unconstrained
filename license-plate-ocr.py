@@ -3,11 +3,11 @@ import cv2
 import numpy as np
 import traceback
 
-import darknet.python.darknet as dn
+import src.darknet as dn
 
 from os.path 				import splitext, basename
 from glob					import glob
-from darknet.python.darknet import detect
+from src.darknet            import detect
 from src.label				import dknet_label_conversion
 from src.utils 				import nms
 

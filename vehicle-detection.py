@@ -3,19 +3,22 @@ import cv2
 import numpy as np
 import traceback
 
-import darknet.python.darknet as dn
+# import src.darknet as dn
+# import darknet.python.darknet as dn
 
 from src.label 				import Label, lwrite
 from os.path 				import splitext, basename, isdir
 from os 					import makedirs
 from src.utils 				import crop_region, image_files_from_folder
-from darknet.python.darknet import detect
+from src.darknet            import detect
+import src.darknet as dn
+# from darknet.python.darknet import detect
 
 
 if __name__ == '__main__':
 
 	try:
-	
+		# sys.argv = [1, "samples/test", "/tmp/output"]
 		input_dir  = sys.argv[1]
 		output_dir = sys.argv[2]
 
@@ -34,11 +37,12 @@ if __name__ == '__main__':
 		if not isdir(output_dir):
 			makedirs(output_dir)
 
-		print 'Searching for vehicles using YOLO...'
+		print("Searching for vehicles using YOLO...")
 
 		for i,img_path in enumerate(imgs_paths):
 
-			print '\tScanning %s' % img_path
+			# img_path = 'samples/test/03066.jpg'
+			print("\tScanning %s" % img_path)
 
 			bname = basename(splitext(img_path)[0])
 
@@ -46,7 +50,7 @@ if __name__ == '__main__':
 
 			R = [r for r in R if r[0] in ['car','bus']]
 
-			print '\t\t%d cars found' % len(R)
+			print('\t\t%d cars found' % len(R))
 
 			if len(R):
 
